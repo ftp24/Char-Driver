@@ -137,7 +137,8 @@ static int device_release(struct inode *inode, struct file *filp)
 		i++;
 
 	}
-	buf[i]='\0';
+	buf[i]='\n';
+	buf[i+1]='\0';
 	sprintf(msg, buf);
 	Device_Open--;
 
