@@ -113,17 +113,44 @@ static int device_open(struct inode *inode, struct file *filp)
  */
 static int device_release(struct inode *inode, struct file *filp)
 {
-  Device_Open--;
 
-  /*
-   * Decrement the usage count, or else once you opened the file, you'll never
-   * get rid of the module.
-   *
-   * TODO: comment out the line below to have some fun!
-   */
-  module_put(THIS_MODULE);
+	char buf[100];
+	int i=0;
+	while(msg[i] != '\0')
+	{
+		buf[i]=msg[i];
+		if((buf[i]>='a' && buf[i]<='z') || (buf[i]>='A' && buf[i]<='Z'))
+		{
+			if(buf[i]=='a')
+			{
+				buf[i]+=25;
+			}
+			else if(buf[i]=='A')
+			{
+				buf[i]+=25;
+			}
+			else
+			{
+				buf[i]-=1;
+			}
+		}
+		i++;
 
-  return SUCCESS;
+	}
+	buf[i]='\n';
+	buf[i+1]='\0';
+	sprintf(msg, buf);
+	Device_Open--;
+
+	/*
+	 * Decrement the usage count, or else once you opened the file, you'll never
+	 * get rid of the module.
+	 *
+	 * TODO: comment out the line below to have some fun!
+	 */
+	module_put(THIS_MODULE);
+
+	return SUCCESS;
 }
 
 /*
@@ -200,5 +227,5 @@ device_write(struct file *filp,const char *buff, size_t len, loff_t *off)
    //size_of_message = strlen(msg);                 // store the length of the stored message
   // printk(KERN_INFO "ourdriver: Received %zu characters from the user\n", len);
 
-   return len;	
+   return len;
 }
