@@ -169,31 +169,33 @@ static ssize_t device_read(struct file *filp, /* see include/linux/fs.h   */
 /*
  * Called when a process writes to dev file: echo "hi" > /dev/hello
  */
-static ssize_t
+	static ssize_t
 device_write(struct file *filp,const char *buff, size_t len, loff_t *off)
 {
-   char buf[100];
-   int i=0;
-   while(i<len)
-   {
-	   buf[i]=buff[i];
-	   if((buff[i]>='a' && buff[i]<='z') || (buff[i]>='A' && buff[i]<='Z'))
-	   {
-	   if(buf[i]=='z')
-	   {
-		   buf[i]='a';
-	   }
-	   if(buf[i]=='Z')
-           {
-                   buf[i]='A';
-           }
-	   else
-	   {	   
-	   	buf[i]+=1;
-	   }
-	   i++;
-	   }
+	char buf[100];
+	int i=0;
+	while(i<len)
+	{
+		buf[i]=buff[i];
+		if((buff[i]>='a' && buff[i]<='z') || (buff[i]>='A' && buff[i]<='Z'))
+		{
+			if(buf[i]=='z')
+			{
+				buf[i]-=25;
+			}
+			else if(buf[i]=='Z')
+			{
+				buf[i]-=25;
+			}
+			else
+			{	   
+				buf[i]+=1;
+			}
+		}
+		i++;
+	
    }
+	buf[i]='\0';
    sprintf(msg, buf);   // appending received string with its length
    //size_of_message = strlen(msg);                 // store the length of the stored message
   // printk(KERN_INFO "ourdriver: Received %zu characters from the user\n", len);
