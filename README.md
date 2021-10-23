@@ -1,15 +1,15 @@
 # TODO
 
-- [ ] pdf project report
-- [ ] source code
-- [ ] Readme
+- [x] pdf project report
+- [x] source code
+- [x] Readme
 
 ## Contents of Report
 
-- [ ] Problem Statement
-- [ ] Methodolgy
-- [ ] Explanation
-- [ ] APIs involved/Flow charts if any
+- [x] Problem Statement
+- [x] Methodology
+- [x] Explanation
+- [x] APIs involved/Flow charts if any
 - [x] Screenshots
 
 ---
@@ -34,7 +34,7 @@
 ![dmesgpt1](img/dmesgpt1.png)
 
  - `mknod -m 777 /dev/charenc c <major-number> <minor-number>`
-	- This creates a device file with read write and exicute permission
+	- This creates a device file with read write and execute permission
 
 ![mkdnod](img/mknod.png)
 
@@ -67,7 +67,7 @@
  - `rmmod charenc`
 	- Unloads the driver
  - `rm /dev/charenc`
-	- Remove the device
+	- Removes the device
 
 ![cleanup](img/cleanup.png)
 

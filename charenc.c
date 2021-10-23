@@ -1,7 +1,6 @@
 // charenc.c: Creates a char device that encrypts using Caesar Cipher using a key of one.
 // Decrypts the cipher text on closing the file.
 
-
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/fs.h>
