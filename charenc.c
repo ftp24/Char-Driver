@@ -39,7 +39,8 @@ int init_module(void)
 	// This will give you the Major number for the device
 	Major = register_chrdev(0, DEVICE_NAME, &fops);
 
-	if (Major < 0) {
+	if (Major < 0) 
+	{
 		printk(KERN_ALERT "Registering char device failed with %d\n", Major);
 		return Major;
 	}
@@ -120,7 +121,8 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t length, loff_
 	if (*msg_Ptr == 0)
 		return 0;
 
-	while (length && *msg_Ptr) {
+	while (length && *msg_Ptr) 
+	{
 		// put_user transfers data from kernel data segment to the user data segment
 		put_user(*(msg_Ptr++), buffer++);
 		length--;
